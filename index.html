@@ -1,129 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tigre Dictionary — Ge'ez headwords with English glosses</title>
-<meta name="description" content="A searchable dictionary of Tigre vocabulary: 10,095 headwords in Ge'ez script with transliteration and English glosses. Filter by part of speech, letter, and more.">
-<link rel="canonical" href="https://example.com/">
-<meta property="og:title" content="Tigre Dictionary">
-<meta property="og:description" content="Search and browse 10,095 Tigre headwords with English glosses.">
-<meta property="og:type" content="website">
-<meta name="robots" content="index, follow">
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <!-- Immediate HTML fallback refresh -->
+    <meta http-equiv="refresh" content="0; url=https://beittigre.github.io/tigre-dictionary/">
+    <!-- SEO canonical link instructing search engines of the permanent move -->
+    <link rel="canonical" href="https://beittigre.github.io/tigre-dictionary/">
+    <title>301 Moved Permanently</title>
+    <script>
+        (function() {
+            var targetDomain = "https://beittigre.github.io/tigre-dictionary";
+            
+            // Extract path after /tigre-dictionary/ to preserve exact internal links
+            var currentPath = window.location.pathname;
+            var basePath = "/tigre-dictionary";
+            var relativePath = "";
+
+            if (currentPath.indexOf(basePath) === 0) {
+                relativePath = currentPath.substring(basePath.length);
+            } else {
+                relativePath = currentPath;
+            }
+
+            // Construct full target URL including subpaths, search queries, and hash anchors
+            var targetUrl = targetDomain + relativePath + window.location.search + window.location.hash;
+            
+            // Perform location replacement (behaves like a permanent 301 HTTP redirect)
+            window.location.replace(targetUrl);
+        })();
+    </script>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="#top">
-      <span class="brand-mark">ት</span>
-      <span class="brand-name">Tigre Dictionary<span>Ge'ez script · English glosses</span></span>
-    </a>
-    <nav class="site-nav">
-      <a href="#browse">Browse</a>
-      <a href="#" id="aboutLink">About</a>
-    </nav>
-  </div>
-</header>
-
-<main id="top">
-  <section class="hero">
-    <div class="hero-grid">
-      <div>
-        <h1>Dictionary of <em>Tigre</em> language.</h1>
-        <p class="lede">Every headword rendered in Ge'ez script, with its transliteration and English meaning, made fully searchable.</p>
-        <form class="search-box" id="heroSearchForm" role="search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input id="heroSearch" type="search" placeholder="Search a headword or an English meaning…" aria-label="Search the dictionary">
-          <button type="submit">Search</button>
-        </form>
-        <div class="stat-row" id="statRow">
-          <div class="stat"><b id="statTotal">—</b><span>headwords</span></div>
-          <div class="stat"><b id="statEnglish">—</b><span>with English glosses</span></div>
-          <div class="stat"><b id="statPos">—</b><span>parts of speech</span></div>
-        </div>
-      </div>
-      <div class="hero-figure" aria-hidden="true">ሀሁ<small>Ge'ez script</small></div>
-    </div>
-  </section>
-
-  <section class="wotd">
-    <div class="wrap" id="wotdWrap">
-      <span class="wotd-label">Word of the day</span>
-      <span class="wotd-word" id="wotdWord">…</span>
-      <span class="wotd-translit" id="wotdTranslit"></span>
-      <span class="wotd-gloss" id="wotdGloss"></span>
-      <a href="#" class="btn-link" id="wotdLink">Open entry</a>
-    </div>
-  </section>
-
-  <section class="pos-section">
-    <h2>Browse by part of speech</h2>
-    <div class="pos-chip-row" id="posChipRow"></div>
-  </section>
-
-  <section class="browse" id="browse">
-    <div class="browse-head">
-      <h2>All headwords</h2>
-      <span class="browse-count" id="resultSummary">Loading…</span>
-    </div>
-
-    <div class="filter-bar">
-      <div class="filter-row">
-        <div class="search-box">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input id="search" type="search" placeholder="Filter results…" aria-label="Filter results">
-          <button type="button">Search</button>
-        </div>
-        <select id="posFilter" class="filter-select" aria-label="Part of speech">
-          <option value="">All parts of speech</option>
-        </select>
-        <select id="sortFilter" class="filter-select" aria-label="Sort order">
-          <option value="default">Dictionary order</option>
-          <option value="alpha">Transliteration A–Z</option>
-          <option value="alpha-desc">Transliteration Z–A</option>
-        </select>
-      </div>
-      <div class="chip-scroll" id="letterRow" aria-label="Filter by first letter"></div>
-      <label class="toggle-row">
-        <input type="checkbox" id="onlyEnglish">
-        Only show headwords with an English gloss
-      </label>
-    </div>
-
-    <div id="results" class="results" aria-live="polite"></div>
-    <div id="emptyState" class="empty-state" hidden>
-      <h3>No headwords match those filters</h3>
-      <p>Try a different search term, or clear the filters below.</p>
-      <button id="clearFilters">Clear filters</button>
-    </div>
-    <nav id="pagination" class="pagination" aria-label="Pagination"></nav>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <span>Tigre Dictionary — a browsable Tigre vocabulary. English glosses only; entries without a recorded English gloss are marked as such.</span>
-    <span id="footerCount"></span>
-  </div>
-</footer>
-
-<dialog id="entryDialog" aria-labelledby="entryDialogTitle">
-  <div class="dialog-head"><button class="icon-btn" id="closeEntry" aria-label="Close">×</button></div>
-  <div class="dialog-body" id="entryBody"></div>
-</dialog>
-
-<dialog id="aboutDialog">
-  <div class="dialog-head"><button class="icon-btn" id="closeAbout" aria-label="Close">×</button></div>
-  <div class="dialog-body about-text">
-    <h2 style="font-family:var(--serif);margin-top:6px">About this dictionary</h2>
-    <p>This site presents <strong id="aboutTotal">10,095</strong> Tigre headwords, transcribed in Ge'ez script with transliteration.</p>
-    <p>Only English glosses are shown. Where a headword has no recorded English gloss (for example, cross-reference entries that simply point to another headword), the entry says so plainly.</p>
-    <p>Grammatical codes (such as <em>O1</em>, <em>S.</em>, <em>Adj.</em>) reproduce traditional stem-class notation and are grouped into broader part-of-speech categories for filtering.</p>
-  </div>
-</dialog>
-
-<script src="app.js"></script>
+    <p>This site has permanently moved to <a id="redirect-link" href="https://beittigre.github.io/tigre-dictionary/">https://beittigre.github.io/tigre-dictionary/</a>.</p>
+    <script>
+        // Update fallback link dynamically if JS is evaluated before redirection
+        var targetDomain = "https://beittigre.github.io/tigre-dictionary";
+        var basePath = "/tigre-dictionary";
+        var relativePath = window.location.pathname.indexOf(basePath) === 0 ? window.location.pathname.substring(basePath.length) : window.location.pathname;
+        var fullUrl = targetDomain + relativePath + window.location.search + window.location.hash;
+        document.getElementById("redirect-link").href = fullUrl;
+        document.getElementById("redirect-link").innerText = fullUrl;
+    </script>
 </body>
 </html>
